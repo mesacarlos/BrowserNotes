@@ -1,6 +1,6 @@
 
 # BrowserNotes
-Simple, mynimal and small HTML document to save your passwords or notes AES-encrypted in your web browser or device.
+Simple, minimal and small HTML document to save your passwords or notes AES-encrypted in your web browser or device.
 
 ### Where to save your document
 You can save your note into:
