@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>Your browser does not support this script</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="styles/style.css">
+		<script src="script/crypto.js"></script>
+		<script src="script/service.js"></script>
+	</head>
+	<body onload="startup()">
+		<header>
+			<div class="leftContainer negrita" id="title" contenteditable onkeypress="reflectChangesOnJson()">Your browser does not support this script</div>
+			<div class="rightContainer">
+				<strong id="info"></strong>
+				<button id="save" onclick="saveFile()"></button> | 
+				<button id="load" onclick="document.getElementById('file-load').click()"></button> | 
+				<button id="chpwd" onclick="chPwd()"></button> | 
+				<button id="glinkbtn" onclick="saveToLink()"></button> | 
+				<button id="savestorage" onclick="saveStorage()"></button> | 
+				<button id="loadstorage" onclick="loadStorage()"></button> | 
+				<a onclick="setLanguage('en_US')" href="#">EN</a> | 
+				<a onclick="setLanguage('es_ES')" href="#">ES</a>
+			</div>
+		</header>
+		<div class="main" id="main" contenteditable onkeypress="reflectChangesOnJson()">Your browser does not support this script. Please check JavaScript is enabled and try again.</div>
+		<label for="file-load" class="oculto">Etiqueta</label><input type="file" name="file-load" id="file-load" class="oculto" accept=".AESjson" onchange="loadFile(this)">
+	</body>
+</html>

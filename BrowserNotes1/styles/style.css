@@ -1,0 +1,33 @@
+body {
+	background: #EEE;
+}
+
+header {
+	position:relative;
+	overflow: auto;
+	padding: 2px;
+}
+
+.leftContainer {
+	float: left;
+	padding: 4px;
+}
+
+.rightContainer {
+	float: right;
+	padding: 4px;
+}
+
+.main {
+	width: 99.5%;
+	height: 95%;
+	padding: 4px;
+}
+
+.oculto{
+	display: none;
+}
+
+.negrita{
+	font-weight: bold;
+}
