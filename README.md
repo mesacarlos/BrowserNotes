@@ -2,6 +2,8 @@
 # BrowserNotes
 Simple, minimal and small HTML document to save your passwords or notes AES-encrypted in your web browser or device.
 
+BrowserNotes is designed to be portable, so that a single file contains everything necessary to run correctly. Also, it is designed to be used without internet connection, including all the necessary libraries.
+
 ### Where to save your document
 You can save your note into:
 
