@@ -104,6 +104,8 @@ function setLanguage(locale){
 			  "note_title": "Untitled note",
 			  "note_content": "Hello, World!",
 			  "save_to_file": "Save to file",
+			  "file": "File",
+			  "language": "Language",
 			  "load_file": "Load file",
 			  "change_password": "Change password",
 			  "generate_link": "Generate link",
@@ -128,6 +130,8 @@ function setLanguage(locale){
 			  "note_title": "Nota sin título",
 			  "note_content": "¡Hola mundo!",
 			  "save_to_file": "Guardar a archivo",
+			  "file": "Archivo",
+			  "language": "Idioma",
 			  "load_file": "Cargar archivo",
 			  "change_password": "Cambiar contraseña",
 			  "generate_link": "Generar enlace",
@@ -149,7 +153,7 @@ function setLanguage(locale){
 		default:
 			console.error("No language set");
 	}
-	//Set button phrases
+	//Set navbar phrases
 	document.title = lang.title;
 	document.getElementById("save").textContent = lang.save_to_file;
 	document.getElementById("load").textContent = lang.load_file;
@@ -157,6 +161,8 @@ function setLanguage(locale){
 	document.getElementById("glinkbtn").textContent = lang.generate_link;
 	document.getElementById("savestorage").textContent = lang.save_storage;
 	document.getElementById("loadstorage").textContent = lang.load_storage;
+	document.getElementById("file-dropdown").textContent = lang.file;
+	document.getElementById("lang-dropdown").textContent = lang.language;
 	if(!oldLang || oldLang.note_title == getTitle())
 		document.getElementById("title").innerText = lang.note_title;
 	if(!oldLang || oldLang.note_content == getText())
@@ -168,7 +174,7 @@ function setLanguage(locale){
  */
 function showInfo(text){
 	if(text != "")
-		document.getElementById("info").innerHTML = text + " | ";
+		document.getElementById("info").innerHTML = text;
 }
 
 /**
