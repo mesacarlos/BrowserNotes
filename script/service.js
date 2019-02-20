@@ -1,5 +1,5 @@
 /*
-Encriptador v2.0.1
+Encriptador v2.1.0
 https://github.com/SrCharlystar
 (c) 2018-2019 SrCharlystar. All rights reserved.
 */
@@ -7,6 +7,7 @@ var jsonFile; //Decrypted JSON file
 var index; //Index of note in JSON file
 var pwd;
 var lang;
+var pendingEncryptedJson;
 
 /**
  * Language phrases and variable initialization
@@ -26,27 +27,56 @@ function startup(){
 }
 
 /**
- * Asks for password and saves it into pwd variable.
+ * Show Modal dialog asking for password.
  */
-function pwdPrompt(isRetry){
-	if(isRetry)
-		pwd = prompt(lang.pwd_ask_retry);
-	else
-		pwd = prompt(lang.pwd_ask);
+function pwdPrompt(){
+	if($('#modalSetPassword').is(':visible')){
+		const sleep = (milliseconds) => {
+		  return new Promise(resolve => setTimeout(resolve, milliseconds))
+		}
+		sleep(500).then(() => {
+		  pwdPrompt();
+		});
+	}else{
+		$('#modalSetPassword').modal('show');
+	}
 }
 
 /**
- * Change/set password
+ * Fired on set password modal close. Saves password into pwd variable.
  */
-function chPwd(){
-	var pwd1 = prompt(lang.pwd_change);
-	var pwd2 = prompt(lang.pwd_change_confirm);
+function onSetPasswordModalClose(){
+	pwd = $("#modalSetPasswordInput").val();
+	$("#modalSetPasswordInput").val(""); //Delete password from form
+	
+	if(pendingEncryptedJson){
+		decrypt(pendingEncryptedJson);
+	}
+}
+
+/**
+ * Change or set password
+ */
+function chPwd(message){
+	$('#modalChangePassword').modal('show');
+	$("#modalChangePasswordDescription").text(message);
+}
+
+/**
+ * Fired on change password modal close.
+ * Changes password.
+ */
+function onChangePasswordModalClose(){
+	var pwd1 = $("#modalChangePasswordInput1").val();
+	var pwd2 = $("#modalChangePasswordInput2").val();
 	if(pwd1 != pwd2){
 		showInfo(lang.pwd_change_error);
 		return;
 	}
 	pwd = pwd1;
 	showInfo(this.lang.pwd_change_correct);
+	$("#modalChangePasswordInput1").val(""); //Delete passwords from form
+	$("#modalChangePasswordInput2").val("");
 }
 
 /**
@@ -54,8 +84,11 @@ function chPwd(){
  * If password was not set, ask user for it.
  */
 function encrypt(unencryptedObj){
-	if(!pwd)
-		chPwd();
+	if(!pwd){
+		chPwd(lang.password_not_provided);
+		pendingEncryption = true;
+		throw "Password not defined.";
+	}
 	reflectChangesOnJson(); //Make sure json file is updated
 	var jsonString = JSON.stringify(unencryptedObj, null, 4);
 	return CryptoJS.AES.encrypt(jsonString, pwd);
@@ -69,12 +102,24 @@ function decrypt(encryptedJson){
 	try {
 		var result = CryptoJS.AES.decrypt(encryptedJson, pwd).toString(CryptoJS.enc.Utf8);
 		if(result == "")
-			throw "Not valid";
-		return JSON.parse(result);
+			throw "Password Incorrect";
+		jsonFile = JSON.parse(result);
+		updateVisibleNote();
+		showInfo(lang.file_loaded);
 	} catch (e) {
-		pwdPrompt(true);
-		return decrypt(encryptedJson);
+		//Password is not correct or is not defined and must be prompted.
+		console.log("Pidiendo pass");
+		pendingEncryptedJson = encryptedJson;
+		pwdPrompt();
 	}
+}
+
+/**
+ * Set modal locales and details (Call this function before enabling Modal)
+ */
+function setModalText(title, detail, placeholder){
+	document.getElementById("pwdModalTitle").textContent = lang.save_to_file;
+	document.getElementById("pwdModalLabel").textContent = lang.save_to_file;
 }
 
 /**
@@ -109,16 +154,18 @@ function setLanguage(locale){
 			  "load_file": "Load file",
 			  "change_password": "Change password",
 			  "generate_link": "Generate link",
+			  "password_not_provided": "Password is not set. Please type a password and retry.",
 			  "pwd_ask": "Please type your password.",
-			  "pwd_ask_retry": "Password is not correct!\nPlease insert your password.",
 			  "pwd_change": "Please type your new password.",
-			  "pwd_change_confirm": "Please confirm your password.",
+			  "pwd_change_confirm": "Confirm your password",
 			  "pwd_change_error": "Passwords do not match so password was not changed.",
 			  "pwd_change_correct": "Done. Save your note to finish password change.",
 			  "get_parameters_set": "Done. Remember to save page to bookmarks!",
 			  "encrypted_note": "Encrypted Note",
 			  "auto_encode_toggle": "Automatic link generation was set to ",
 			  "saved": "Saved.",
+			  "ok_modal": "OK",
+			  "password_modal": "Password",
 			  "file_loaded": "File loaded successfully.",
 			  "save_storage": "Save to WebStorage",
 			  "load_storage": "Load from WebStorage"
@@ -135,16 +182,18 @@ function setLanguage(locale){
 			  "load_file": "Cargar archivo",
 			  "change_password": "Cambiar contraseña",
 			  "generate_link": "Generar enlace",
+			  "password_not_provided": "No has introducido contraseña. Inserta una e inténtalo de nuevo.",
 			  "pwd_ask": "Por favor, introduce la contraseña.",
-			  "pwd_ask_retry": "La contraseña no es correcta.\nPor favor, introduce la contraseña.",
 			  "pwd_change": "Escribe tu nueva contraseña",
-			  "pwd_change_confirm": "Confirma tu contraseña.",
+			  "pwd_change_confirm": "Confirma tu contraseña",
 			  "pwd_change_error": "Las contraseñas no coinciden por lo que tu contraseña no ha sido cambiada.",
 			  "pwd_change_correct": "Hecho. Guarda la nota para guardar la nueva contraseña.",
 			  "get_parameters_set": "Hecho. Recuerda guardar la página en marcadores o descargar el fichero.",
 			  "encrypted_note": "Nota encriptada",
 			  "auto_encode_toggle": "La generacion automatica de enlaces ha sido cambiada a ",
 			  "saved": "Guardado.",
+			  "ok_modal": "Aceptar",
+			  "password_modal": "Contraseña",
 			  "file_loaded": "Archivo cargado con éxito.",
 			  "save_storage": "Guardar WebStorage",
 			  "load_storage": "Leer WebStorage"
@@ -163,6 +212,14 @@ function setLanguage(locale){
 	document.getElementById("loadstorage").textContent = lang.load_storage;
 	document.getElementById("file-dropdown").textContent = lang.file;
 	document.getElementById("lang-dropdown").textContent = lang.language;
+	document.getElementById("modalSetPasswordButton").textContent = lang.ok_modal;
+	document.getElementById("modalChangePasswordButton").textContent = lang.ok_modal;
+	document.getElementById("modalSetPasswordTitle").textContent = lang.password_modal;
+	document.getElementById("modalSetPasswordInput").placeholder = lang.password_modal;
+	document.getElementById("modalSetPasswordDescription").textContent = lang.pwd_ask;
+	document.getElementById("modalChangePasswordTitle").textContent = lang.password_modal;
+	document.getElementById("modalChangePasswordInput1").placeholder = lang.password_modal;
+	document.getElementById("modalChangePasswordInput2").placeholder = lang.pwd_change_confirm;
 	if(!oldLang || oldLang.note_title == getTitle())
 		document.getElementById("title").innerText = lang.note_title;
 	if(!oldLang || oldLang.note_content == getText())
@@ -239,9 +296,8 @@ function setLink(){
  * Loads note from WebStorage
  */
 function loadStorage(){
-	jsonFile = decrypt(window.localStorage.encryptedJsonString);
-	updateVisibleNote();
-	showInfo(lang.file_loaded);
+	pendingEncryptedJson = window.localStorage.encryptedJsonString;
+	pwdPrompt();
 }
 
 /**
@@ -250,9 +306,8 @@ function loadStorage(){
 function loadFile(o){
 	var fr = new FileReader();
 	fr.onloadend = function(e){
-		jsonFile = decrypt(e.target.result)
-		updateVisibleNote();
-		showInfo(lang.file_loaded);
+		pendingEncryptedJson = e.target.result;
+		pwdPrompt();
 	};
 	fr.readAsText(o.files[0]);
 }
@@ -261,9 +316,8 @@ function loadFile(o){
  *
  */
 function loadURL(){
-	var encJsonFile = getParameterByName("data");
-	jsonFile = decrypt(encJsonFile);
-	updateVisibleNote();
+	pendingEncryptedJson = getParameterByName("data");
+	pwdPrompt();
 }
 
 //EXTRA FUNCTIONS

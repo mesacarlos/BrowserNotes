@@ -1,13 +1,3 @@
-body {
-	background: #EEE;
-}
-
-header {
-	position:relative;
-	overflow: auto;
-	padding: 2px;
-}
-
 .leftContainer {
 	float: left;
 	padding: 4px;
@@ -15,12 +5,10 @@ header {
 
 .rightContainer {
 	float: right;
-	padding: 4px;
 }
 
 .main {
 	height: 93%;
-	padding: 4px;
 }
 
 .oculto{
