@@ -1,12 +1,3 @@
-.leftContainer {
-	float: left;
-	padding: 4px;
-}
-
-.rightContainer {
-	float: right;
-}
-
 .main {
 	height: 93%;
 	padding-left: 10px;
