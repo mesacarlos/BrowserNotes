@@ -16,37 +16,35 @@
 		<script src="script/service.js"></script>
 	</head>
 	<body onload="startup()">
-		<nav class="navbar navbar-dark bg-light">
-			<div class="leftContainer negrita" id="title" contenteditable onkeypress="reflectChangesOnJson()">Your browser does not support this script</div>
-			<div class="rightContainer">
-				<ul class="nav nav-pills">
-					<li class="nav-item">
-						<a class="nav-link disabled" id="info"></a>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="file-dropdown">File</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#" id="save" onclick="saveFile()"></a>
-							<a class="dropdown-item" href="#" id="load" onclick="document.getElementById('file-load').click()"></a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#" id="savestorage" onclick="saveStorage()"></a>
-							<a class="dropdown-item" href="#" id="loadstorage" onclick="loadStorage()"></a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#" id="glinkbtn" onclick="saveToLink()"></a>
-						</div>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#" id="chpwd" onclick="chPwd()"></a>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="lang-dropdown">Language</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="#" onclick="setLanguage('en_US')">English</a>
-							<a class="dropdown-item" href="#" onclick="setLanguage('es_ES')">Español</a>
-						</div>
-					</li>
-				</ul>
-			</div>
+		<nav class="navbar navbar-light bg-light">
+			<div class="negrita" id="title" contenteditable onkeypress="reflectChangesOnJson()">Your browser does not support this script</div>
+			<ul class="nav nav-pills">
+				<li class="nav-item">
+					<a class="nav-link disabled" id="info"></a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="file-dropdown">File</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#" id="save" onclick="saveFile()"></a>
+						<a class="dropdown-item" href="#" id="load" onclick="document.getElementById('file-load').click()"></a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#" id="savestorage" onclick="saveStorage()"></a>
+						<a class="dropdown-item" href="#" id="loadstorage" onclick="loadStorage()"></a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#" id="glinkbtn" onclick="saveToLink()"></a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#" id="chpwd" onclick="chPwd(lang.change_password)"></a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="lang-dropdown">Language</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#" onclick="setLanguage('en_US')">English</a>
+						<a class="dropdown-item" href="#" onclick="setLanguage('es_ES')">Español</a>
+					</div>
+				</li>
+			</ul>
 		</nav>
 		<div class="main" id="main" contenteditable onkeypress="reflectChangesOnJson()">Your browser does not support this script. Please check JavaScript is enabled and try again.</div>
 		<label for="file-load" class="oculto">Etiqueta</label><input type="file" name="file-load" id="file-load" class="oculto" accept=".AESjson" onchange="loadFile(this)">
