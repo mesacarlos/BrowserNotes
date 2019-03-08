@@ -59,7 +59,10 @@ function onSetPasswordModalClose(){
  */
 function chPwd(message){
 	$('#modalChangePassword').modal('show');
-	$("#modalChangePasswordDescription").text(message);
+	if(message)
+		$("#modalChangePasswordDescription").text(message);
+	else
+		$("#modalChangePasswordDescription").text(lang.change_password);
 }
 
 /**
