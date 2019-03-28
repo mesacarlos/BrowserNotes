@@ -7,15 +7,21 @@
 		
 		<!--- Start Bootstrap requirements--->
 		<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css">
-		<script src="script/jquery-3.3.1.slim.min.js"></script>
-		<script src="script/popper.min.js"></script>
-		<script src="script/bootstrap.min.js"></script>
+		<script src="script/lib/jquery-3.3.1.slim.min.js"></script>
+		<script src="script/lib/popper.min.js"></script>
+		<script src="script/lib/bootstrap.min.js"></script>
 		<!--- End Bootstrap requirements--->
 		
-		<script src="script/crypto.js"></script>
+		<!--- CryptoJS --->
+		<script src="script/lib/crypto.js"></script>
+		
+		<!--- BrowserNotes 2 --->
 		<script src="script/service.js"></script>
+		<script src="script/utils.js"></script>
+		<script src="script/fileReader.js"></script>
+		<script src="script/fileWriter.js"></script>
 	</head>
-	<body onload="startup()">
+	<body>
 		<nav class="navbar navbar-light bg-light">
 			<div class="negrita" id="title" contenteditable onkeypress="reflectChangesOnJson()">Your browser does not support this script</div>
 			<ul class="nav nav-pills">

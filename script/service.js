@@ -1,5 +1,5 @@
 /*
-Encriptador v2.1.0
+Encriptador v2.2
 https://github.com/SrCharlystar
 (c) 2018-2019 SrCharlystar. All rights reserved.
 */
@@ -13,18 +13,17 @@ var pendingEncryptedJson;
  * Language phrases and variable initialization
  * Also, check for possible notes in the URL. If set, load saved note and ask for password.
  */
-function startup(){
-	index = 0;
+$(document).ready(function() {
+    index = 0;
 	jsonFile = new Object();
 	jsonFile.version = 1;
 	jsonFile.notes = new Array();
 	jsonFile.notes[index] = new Object();
 	setLanguage("en_US");
-	
 	if(window.location.search){
 		loadURL();
 	}
-}
+});
 
 /**
  * Show Modal dialog asking for password.
@@ -115,14 +114,6 @@ function decrypt(encryptedJson){
 		pendingEncryptedJson = encryptedJson;
 		pwdPrompt();
 	}
-}
-
-/**
- * Set modal locales and details (Call this function before enabling Modal)
- */
-function setModalText(title, detail, placeholder){
-	document.getElementById("pwdModalTitle").textContent = lang.save_to_file;
-	document.getElementById("pwdModalLabel").textContent = lang.save_to_file;
 }
 
 /**
@@ -251,96 +242,4 @@ function reflectChangesOnJson(){
 function updateVisibleNote(){
 	document.getElementById("title").innerText = jsonFile.notes[index].title;
 	document.getElementById("main").innerText = jsonFile.notes[index].content;
-}
-
-//DOWN HERE SAVING FUNCTIONS
-
-/**
- * Saves note into WebStorage
- */
-function saveStorage(){
-	var encryptedNoteResult = encrypt(jsonFile);
-	
-	window.localStorage.encryptedJsonString = encryptedNoteResult;
-	showInfo(lang.saved);
-}
-
-/**
- * Saves note to a file
- */
-function saveFile(){
-	var encryptedNoteResult = encrypt(jsonFile);
-	
-	download(getTitle() + "-encrypted.AESjson", encryptedNoteResult)
-	showInfo(lang.saved);
-}
-
-/**
- * Saves to URL and reports user
- */
-function saveToLink(){
-	setLink();
-	showInfo(lang.get_parameters_set);
-}
-
-/**
- * Updates address bar link
- * Called only when a save WITHOUT REPORTING to the user is needed.
- */
-function setLink(){
-	var encryptedNoteResult = encrypt(jsonFile);
-	
-	window.history.pushState('', lang.encrypted_note, '?data=' + encryptedNoteResult);
-}
-
-//DOWN HERE LOADING FUNCTIONS
-	
-/**
- * Loads note from WebStorage
- */
-function loadStorage(){
-	pendingEncryptedJson = window.localStorage.encryptedJsonString;
-	pwdPrompt();
-}
-
-/**
- * Loads from file
- */
-function loadFile(o){
-	var fr = new FileReader();
-	fr.onloadend = function(e){
-		pendingEncryptedJson = e.target.result;
-		pwdPrompt();
-	};
-	fr.readAsText(o.files[0]);
-}
-
-/**
- *
- */
-function loadURL(){
-	pendingEncryptedJson = getParameterByName("data");
-	pwdPrompt();
-}
-
-//EXTRA FUNCTIONS
-
-function getParameterByName(name) {
-	var url = window.location.href;
-	name = name.replace(/[\[\]]/g, '\\$&');
-	var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-		results = regex.exec(url);
-	if (!results) return null;
-	if (!results[2]) return '';
-	return decodeURIComponent(results[2]);
-}
-
-function download(filename, text) {
-	var element = document.createElement('a');
-	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-	element.setAttribute('download', filename);
-	element.style.display = 'none';
-	document.body.appendChild(element);
-	element.click();
-	document.body.removeChild(element);
 }
