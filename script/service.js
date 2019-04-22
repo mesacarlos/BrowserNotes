@@ -1,7 +1,7 @@
 /*
 Encriptador v2.2
-https://github.com/SrCharlystar
-(c) 2018-2019 SrCharlystar. All rights reserved.
+https://github.com/mesacarlos
+(c) 2018-2019 Carlos Mesa. All rights reserved.
 */
 var jsonFile; //Decrypted JSON file
 var index; //Index of note in JSON file
