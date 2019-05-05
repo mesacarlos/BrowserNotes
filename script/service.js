@@ -14,10 +14,22 @@ var pendingEncryptedJson;
  * Also, check for possible notes in the URL. If set, load saved note and ask for password.
  */
 $(document).ready(function() {
+	//Initialize internationalization system
+	if (typeof window.localStorage.userLocale == "undefined") {
+		//User did not select language, changing to default
+		window.localStorage.userLocale = "en_US";
+	}
+    setLanguage(window.localStorage.userLocale);
+	
+	//Initialize JSON file
     initializeNotes();
+	
+	//Load Bookmark URL if needed
 	if(window.location.search){
 		loadURL();
 	}
+	
+	//Update navbar list of notes
 	updateNotesList();
 });
 

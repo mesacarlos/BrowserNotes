@@ -100,9 +100,3 @@ function setLanguage(locale){
 	if(!oldLang || oldLang.note_content == getText())
 		document.getElementById("main").innerText = lang.note_content;
 }
-
-if (typeof window.localStorage.userLocale == "undefined") {
-	//User did not select language, changing to default
-	window.localStorage.userLocale = "en_US";
-}
-setLanguage(window.localStorage.userLocale);
