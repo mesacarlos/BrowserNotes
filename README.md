@@ -2,9 +2,9 @@
 # BrowserNotes 2.0
 Simple, minimal and small HTML document to save your passwords or notes AES-encrypted in your web browser or device.
 
-File format of BrowserNotes2 is ready for multiple notes within same file, device or bookmark. Also, encryption is now applied once to the file (before, title and content were encrypted separately, making script slower without giving any security improvement)
+BrowserNotes2 is able to store multiple notes inside one same file, device or bookmark. Also, encryption is now applied once to the file (before, title and content were encrypted separately, making script slower without giving any security improvement)
 
-BrowserNotes is designed to be portable, so that a single file contains everything necessary to run correctly. Also, it is designed to be used without internet connection, including all the necessary libraries.
+A portable version of BrowserFiles can be found at [https://github.com/mesacarlos/BrowserNotes/releases](releases), so that a single file contains everything necessary to run correctly. Also, it is designed to be used without internet connection, including all the necessary libraries.
 
 ### Where to save your document
 You can save your note into:
@@ -15,4 +15,4 @@ You can save your note into:
 
 ### Also included
 
- - **Multi-language**: Translated into English (default) and Spanish. More languages can be easily added, just editing a JSON file. Also, to change default language, change `setLanguage("en_US")` at `startup()` function.
+ - **Multi-language**: Translated into English (default) and Spanish. More languages can be easily added, just editing a JSON file inside `lang.js`. Your preferred language will be saved across sessions.
