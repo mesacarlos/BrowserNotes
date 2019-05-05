@@ -18,13 +18,14 @@
 		<!--- BrowserNotes 2 --->
 		<script src="script/service.js"></script>
 		<script defer src="script/lang.js"></script>
+		<script src="script/notemanager.js"></script>
 		<script src="script/utils.js"></script>
 		<script src="script/fileReader.js"></script>
 		<script src="script/fileWriter.js"></script>
 	</head>
 	<body>
 		<nav class="navbar navbar-light bg-light">
-			<div class="negrita" id="title" contenteditable onkeypress="reflectChangesOnJson()">Your browser does not support this script</div>
+			<div class="negrita" id="title" contenteditable onkeyup="reflectChangesOnJson();updateNotesList();">Your browser does not support this script</div>
 			<ul class="nav nav-pills">
 				<li class="nav-item">
 					<a class="nav-link disabled" id="info"></a>
@@ -41,13 +42,12 @@
 						<a class="dropdown-item" href="#" id="glinkbtn" onclick="saveToLink()"></a>
 					</div>
 				</li>
-				<li class="nav-item dropdown" style="display: none;">
+				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="note-dropdown">Note</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#" id="addNote" onclick="addNote()">Añadir nota</a>
-						<a class="dropdown-item" href="#" id="deleteNote" onclick="deleteNote()">Borrar nota</a>
+					<div class="dropdown-menu" id="noteslist">
+						<a class="dropdown-item" href="#" id="addNote" onclick="addNote()"></a>
+						<a class="dropdown-item" href="#" id="deleteNote" onclick="deleteNote()"></a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#" onclick="openNote(0)">Por defecto</a>
 					</div>
 				</li>
 				<li class="nav-item">
@@ -55,14 +55,14 @@
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="lang-dropdown">Language</a>
-					<div class="dropdown-menu">
+					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item" href="#" onclick="setLanguage('en_US')">English</a>
 						<a class="dropdown-item" href="#" onclick="setLanguage('es_ES')">Español</a>
 					</div>
 				</li>
 			</ul>
 		</nav>
-		<div class="main" id="main" contenteditable onkeypress="reflectChangesOnJson()">Your browser does not support this script. Please check JavaScript is enabled and try again.</div>
+		<div class="main" id="main" contenteditable onkeyup="reflectChangesOnJson()">Your browser does not support this script. Please check JavaScript is enabled and try again.</div>
 		<label for="file-load" class="oculto">Etiqueta</label><input type="file" name="file-load" id="file-load" class="oculto" accept=".AESjson" onchange="loadFile(this)">
 		
 		<!-- Password set Modal start -->

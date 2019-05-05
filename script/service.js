@@ -1,5 +1,5 @@
 /*
-Encriptador v2.2
+Encriptador v2.3
 https://github.com/mesacarlos
 (c) 2018-2019 Carlos Mesa. All rights reserved.
 */
@@ -14,14 +14,11 @@ var pendingEncryptedJson;
  * Also, check for possible notes in the URL. If set, load saved note and ask for password.
  */
 $(document).ready(function() {
-    index = 0;
-	jsonFile = new Object();
-	jsonFile.version = 1;
-	jsonFile.notes = new Array();
-	jsonFile.notes[index] = new Object();
+    initializeNotes();
 	if(window.location.search){
 		loadURL();
 	}
+	updateNotesList();
 });
 
 /**
@@ -106,6 +103,7 @@ function decrypt(encryptedJson){
 			throw "Password Incorrect";
 		jsonFile = JSON.parse(result);
 		updateVisibleNote();
+		updateNotesList();
 		showInfo(lang.file_loaded);
 	} catch (e) {
 		//Password is not correct or is not defined and must be prompted.

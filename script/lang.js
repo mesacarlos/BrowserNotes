@@ -34,7 +34,10 @@ function setLanguage(locale){
 			  "password_modal": "Password",
 			  "file_loaded": "File loaded successfully.",
 			  "save_storage": "Save to WebStorage",
-			  "load_storage": "Load from WebStorage"
+			  "load_storage": "Load from WebStorage",
+			  "note": "Note",
+			  "add_note": "Add note",
+			  "delete_note": "Delete note"
 			}
 			break;
 		case "es_ES":
@@ -62,7 +65,10 @@ function setLanguage(locale){
 			  "password_modal": "Contraseña",
 			  "file_loaded": "Archivo cargado con éxito.",
 			  "save_storage": "Guardar WebStorage",
-			  "load_storage": "Leer WebStorage"
+			  "load_storage": "Leer WebStorage",
+			  "note": "Nota",
+			  "add_note": "Añadir nota",
+			  "delete_note": "Borrar nota"
 			}
 			break;
 		default:
@@ -86,6 +92,9 @@ function setLanguage(locale){
 	document.getElementById("modalChangePasswordTitle").textContent = lang.password_modal;
 	document.getElementById("modalChangePasswordInput1").placeholder = lang.password_modal;
 	document.getElementById("modalChangePasswordInput2").placeholder = lang.pwd_change_confirm;
+	document.getElementById("note-dropdown").textContent = lang.note;
+	document.getElementById("addNote").textContent = lang.add_note;
+	document.getElementById("deleteNote").textContent = lang.delete_note;
 	if(!oldLang || oldLang.note_title == getTitle())
 		document.getElementById("title").innerText = lang.note_title;
 	if(!oldLang || oldLang.note_content == getText())
