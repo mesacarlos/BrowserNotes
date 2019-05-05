@@ -17,6 +17,7 @@
 		
 		<!--- BrowserNotes 2 --->
 		<script src="script/service.js"></script>
+		<script defer src="script/lang.js"></script>
 		<script src="script/utils.js"></script>
 		<script src="script/fileReader.js"></script>
 		<script src="script/fileWriter.js"></script>
@@ -38,6 +39,15 @@
 						<a class="dropdown-item" href="#" id="loadstorage" onclick="loadStorage()"></a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#" id="glinkbtn" onclick="saveToLink()"></a>
+					</div>
+				</li>
+				<li class="nav-item dropdown" style="display: none;">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" id="note-dropdown">Note</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#" id="addNote" onclick="addNote()">Añadir nota</a>
+						<a class="dropdown-item" href="#" id="deleteNote" onclick="deleteNote()">Borrar nota</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#" onclick="openNote(0)">Por defecto</a>
 					</div>
 				</li>
 				<li class="nav-item">
