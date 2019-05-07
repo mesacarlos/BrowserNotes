@@ -4,7 +4,7 @@ Simple, minimal and small HTML document to save your passwords or notes AES-encr
 
 BrowserNotes2 is able to store multiple notes inside one same file, device or bookmark. Also, encryption is now applied once to the file (before, title and content were encrypted separately, making script slower without giving any security improvement)
 
-A portable version of BrowserFiles can be found at [https://github.com/mesacarlos/BrowserNotes/releases](releases), so that a single file contains everything necessary to run correctly. Also, it is designed to be used without internet connection, including all the necessary libraries.
+A portable version of BrowserFiles can be found at [releases](https://github.com/mesacarlos/BrowserNotes/releases), so that a single file contains everything necessary to run correctly. Also, it is designed to be used without internet connection, including all the necessary libraries.
 
 ### Where to save your document
 You can save your note into:
