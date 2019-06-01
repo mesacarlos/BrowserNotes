@@ -2,6 +2,10 @@
  * Loads note from WebStorage
  */
 function loadStorage(){
+	if(typeof window.localStorage.encryptedJsonString == 'undefined'){
+		showInfo(lang.undefined_webstorage);
+		return;
+	}
 	pendingEncryptedJson = window.localStorage.encryptedJsonString;
 	pwdPrompt();
 }

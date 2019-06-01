@@ -37,7 +37,8 @@ function setLanguage(locale){
 			  "load_storage": "Load from WebStorage",
 			  "note": "Note",
 			  "add_note": "Add note",
-			  "delete_note": "Delete note"
+			  "delete_note": "Delete note",
+			  "undefined_webstorage": "WebStorage is empty."
 			}
 			break;
 		case "es_ES":
@@ -68,7 +69,8 @@ function setLanguage(locale){
 			  "load_storage": "Leer WebStorage",
 			  "note": "Nota",
 			  "add_note": "Añadir nota",
-			  "delete_note": "Borrar nota"
+			  "delete_note": "Borrar nota",
+			  "undefined_webstorage": "WebStorage está vacio."
 			}
 			break;
 		default:
