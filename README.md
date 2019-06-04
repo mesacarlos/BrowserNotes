@@ -16,3 +16,5 @@ You can save your note into:
 ### Also included
 
  - **Multi-language**: Translated into English (default) and Spanish. More languages can be easily added, just editing a JSON inside `lang.js`. Your preferred language will be saved across sessions.
+
+[Looking for version 1.0?](https://github.com/mesacarlos/BrowserNotes/tree/5d8bab827ce6c68a66584a10e4acf6e0c47f5b7c)
