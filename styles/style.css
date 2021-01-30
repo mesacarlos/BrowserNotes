@@ -1,5 +1,5 @@
 .main {
-	height: 93%;
+	height: 94vh;
 	padding-left: 10px;
 }
 
@@ -9,4 +9,57 @@
 
 .negrita{
 	font-weight: bold;
+}
+
+.bg-dark1 {
+    background-color: #505050;
+}
+
+.bg-dark2 {
+    background-color: #393939;
+}
+
+.fb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+input#theme {
+    position: relative;
+    width: 50px;
+    height: 25px;
+    appearance: none;
+    background-color: #111;
+    border-radius: 1rem;
+    margin-left: auto;
+    cursor: pointer;
+    transition: background-color 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+input#theme::before {
+    content: '';
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    background-color: #ffffff;
+    top: 4px;
+	left: 4px;
+    border-radius: 1rem;
+    transform: scale(1.15);
+    transition: left 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+input#theme:checked {
+    background-color: #ffffff;
+}
+
+input#theme:checked::before {
+	left: 29px;
+	background-color: #111;
+}
+
+input#theme:focus {
+    outline: none;
 }
