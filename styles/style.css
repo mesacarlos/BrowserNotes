@@ -1,5 +1,5 @@
 .main {
-	height: 93%;
+	height: 94vh;
 	padding-left: 10px;
 }
 
@@ -9,6 +9,21 @@
 
 .negrita{
 	font-weight: bold;
+}
+
+.bg-dark1 {
+    background-color: #505050;
+}
+
+.bg-dark2 {
+    background-color: #393939;
+}
+
+.fb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 input#theme {
@@ -45,3 +60,6 @@ input#theme:checked::before {
 	background-color: #111;
 }
 
+input#theme:focus {
+    outline: none;
+}
